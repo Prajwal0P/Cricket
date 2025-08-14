@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Cricket Journey – The Fear Factor of Tape Ball</title>
+    <style>
+        :root {
+            --primary: #ff6b35;
+            --secondary: #004e89;
+            --dark: #292929;
+            --light: #f7f7f7;
+            --accent: #ffbe0b;
+            --font-main: 'Poppins', sans-serif;
+            --font-alt: 'Montserrat', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--dark);
+            color: var(--light);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Typography */
+        h1, h2, h3, h4 {
+            font-family: var(--font-alt);
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            margin-bottom: 1rem;
+        }
+
+        h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        h2:after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: var(--primary);
+            border-radius: 2px;
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        /* Layout */
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 80px 0;
+            position: relative;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 20px 0;
+            transition: all 0.3s ease;
+        }
+
+        header.scrolled {
+            background-color: rgba(41, 41, 41, 0.95);
+            padding: 15px 0;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--light);
+            text-decoration: none;
+            font-family: var(--font-alt);
+        }
+
+        .logo span {
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover:after {
+            width: 100%;
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        #hero {
+            height: 100vh;
+            min-height: 700px;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(rgba(41, 41, 41, 0.8), rgba(41, 41, 41, 0.8)), 
+                        url('https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1600&q=80') no-repeat center center/cover;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-quote {
+            font-size: 1.5rem;
+            font-style: italic;
+            margin: 2rem 0;
+            padding-left: 20px;
+            border-left: 4px solid var(--primary);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: var(--primary);
+            color: var(--light);
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1.1rem;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(255, 107, 53, 0.3);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            margin-left: 15px;
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+        }
+
+        /* About Section */
+        #about {
+            background-color: var(--light);
+            color: var(--dark);
+        }
+
+        #about h2:after {
+            background: var(--secondary);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            display: inline-block;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .about-text {
+            position: relative;
+        }
+
+        .about-image {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 20px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .about-image:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Bowling Section */
+        #bowling {
+            background: linear-gradient(135deg, var(--dark) 0%, #1a1a1a 100%);
+        }
+
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .skill-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 30px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .skill-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255, 107, 53, 0.1) 0%, rgba(255, 190, 11, 0.1) 100%);
+            z-index: -1;
+        }
+
+        .skill-card h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        .skill-icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--accent);
+        }
+
+        /* Batting Section */
+        #batting {
+            background-color: var(--light);
+            color: var(--dark);
+        }
+
+        #batting h2:after {
+            background: var(--secondary);
+        }
+
+        .highlight-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .highlight-card {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .highlight-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .highlight-card h3 {
+            color: var(--secondary);
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        .highlight-icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+
+        /* Moments Section */
+        #moments {
+            background: linear-gradient(135deg, #1a1a1a 0%, var(--dark) 100%);
+        }
+
+        .quote-slider {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .quote {
+            font-size: 1.5rem;
+            font-style: italic;
+            margin-bottom: 30px;
+            padding: 0 20px;
+        }
+
+        .author {
+            font-weight: 600;
+            color: var(--primary);
+            font-size: 1.2rem;
+        }
+
+        .slider-dots {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            margin: 0 5px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .dot.active {
+            background: var(--primary);
+        }
+
+        /* Reactions Section */
+        #reactions {
+            background-color: #1a1a1a;
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .testimonial-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 10px;
+            border-left: 4px solid var(--primary);
+            transition: transform 0.3s ease;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            color: var(--accent);
+        }
+
+        /* Footer */
+        footer {
+            background-color: #1a1a1a;
+            padding: 50px 0 20px;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            margin: 30px 0;
+        }
+
+        .social-link {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 10px;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            background: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        .copyright {
+            margin-top: 30px;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .about-image {
+                order: -1;
+                max-width: 500px;
+                margin: 0 auto;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background: var(--dark);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                transition: left 0.3s ease;
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .nav-links li {
+                margin: 15px 0;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .hero-buttons {
+                display: flex;
+                flex-direction: column;
+            }
+
+            .btn-outline {
+                margin-left: 0;
+                margin-top: 15px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            section {
+                padding: 60px 0;
+            }
+
+            .hero-quote {
+                font-size: 1.2rem;
+            }
+
+            .quote {
+                font-size: 1.2rem;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .fade-in {
+            animation: fadeIn 1s ease forwards;
+        }
+
+        .delay-1 {
+            animation-delay: 0.2s;
+        }
+
+        .delay-2 {
+            animation-delay: 0.4s;
+        }
+
+        .delay-3 {
+            animation-delay: 0.6s;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="container">
+            <nav>
+                <a href="#" class="logo">Cricket<span>Journey</span></a>
+                <ul class="nav-links">
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#bowling">Bowling</a></li>
+                    <li><a href="#batting">Batting</a></li>
+                    <li><a href="#moments">Moments</a></li>
+                    <li><a href="#reactions">Reactions</a></li>
+                </ul>
+                <div class="hamburger">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="fade-in">I don't just bowl—I make batters think twice.</h1>
+                <p class="hero-quote fade-in delay-1">"But hand me a bat, and I might just flip the script."</p>
+                <div class="hero-buttons fade-in delay-2">
+                    <a href="#bowling" class="btn">My Bowling</a>
+                    <a href="#batting" class="btn btn-outline">My Batting</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <div class="section-title fade-in">
+                <h2>How It Started</h2>
+            </div>
+            <div class="about-content">
+                <div class="about-text fade-in delay-1">
+                    <p>I didn't grow up with coaching or formal nets. No academies. No leather balls. Just a tennis ball, an open space, and a fire in the belly to bowl different.</p>
+                    <p>What started casually turned into something serious. I didn't just play the game—I studied it. Watched every bounce, adjusted angles, created my own deliveries.</p>
+                    <p>Cricket's not just a game for me. It taught me focus, patience, and the joy of experimenting—all of which I carry into everything I create.</p>
+                </div>
+                              
+                
+                <div class="about-image fade-in delay-2">
+                    <img src="https://images.unsplash.com/photo-1689511739810-ded5f54a254e?crop=entropy&cs=tinysrgb&fit=max&w=800" alt="Man holding bottle">
+                </div>
+                
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- Bowling Section -->
+    <section id="bowling">
+        <div class="container">
+            <div class="section-title fade-in">
+                <h2>Bowling Style</h2>
+            </div>
+            <div class="skills-container">
+                <div class="skill-card fade-in delay-1">
+                    <div class="skill-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3>Fast-ish Medium</h3>
+                    <p>Deceptive pace variations with the same action. Batters never know what's coming next.</p>
+                </div>
+                <div class="skill-card fade-in delay-2">
+                    <div class="skill-icon">
+                        <i class="fas fa-magic"></i>
+                    </div>
+                    <h3>Off-spin / Side-arm</h3>
+                    <p>Spinners disguised as medium pace. The ultimate surprise weapon in tape ball cricket.</p>
+                </div>
+                <div class="skill-card fade-in delay-3">
+                    <div class="skill-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>Psychological Edge</h3>
+                    <p>"Batters smile before facing me. After the first ball, they stop smiling."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Batting Section -->
+    <section id="batting">
+        <div class="container">
+            <div class="section-title fade-in">
+                <h2>Batting Philosophy</h2>
+            </div>
+            <div class="highlight-cards">
+                <div class="highlight-card fade-in delay-1">
+                    <div class="highlight-icon">
+                        <i class="fas fa-fire"></i>
+                    </div>
+                    <h3>Aggressive Finisher</h3>
+                    <p>I'm not here to block. I'm here to maximize moments, punish loose balls, and change the tempo in just a few deliveries.</p>
+                </div>
+                <div class="highlight-card fade-in delay-2">
+                    <div class="highlight-icon">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <h3>Comeback King</h3>
+                    <p>Got hit for 22 in an over once. Next innings? Returned the favor with the bat. I don't go quiet. I hit back.</p>
+                </div>
+                <div class="highlight-card fade-in delay-3">
+                    <div class="highlight-icon">
+                        <i class="fas fa-chess"></i>
+                    </div>
+                    <h3>Momentum Thief</h3>
+                    <p>Opposition celebrating? One boundary and they're rattled. That's how I bat.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Moments Section -->
+    <section id="moments">
+        <div class="container">
+            <div class="section-title fade-in">
+                <h2>Signature Moments</h2>
+            </div>
+            <div class="quote-slider fade-in delay-1">
+                <div class="quote active">
+                    "Smacked a six after getting hit in the last over. Pulled off wins from situations no one backed me in."
+                </div>
+                <div class="quote">
+                    "All or nothing swings—sometimes it's chaos, sometimes it's brilliance. But it's always entertaining."
+                </div>
+                <div class="quote">
+                    "This guy has serious presence. He plays like he's already seen the future."
+                </div>
+                <div class="author">Audience Reactions</div>
+                <div class="slider-dots">
+                    <div class="dot active" data-index="0"></div>
+                    <div class="dot" data-index="1"></div>
+                    <div class="dot" data-index="2"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reactions Section -->
+    <section id="reactions">
+        <div class="container">
+            <div class="section-title fade-in">
+                <h2>Audience Reactions</h2>
+            </div>
+            <div class="testimonial-grid">
+                <div class="testimonial-card fade-in delay-1">
+                    <p class="testimonial-text">"This guy has serious presence. He plays like he's already seen the future."</p>
+                    <p class="testimonial-author">- Local Cricket Fan</p>
+                </div>
+                <div class="testimonial-card fade-in delay-2">
+                    <p class="testimonial-text">"Bat or ball—he's unpredictable. That's dangerous."</p>
+                    <p class="testimonial-author">- Opposing Team Captain</p>
+                </div>
+                <div class="testimonial-card fade-in delay-3">
+                    <p class="testimonial-text">"He plays with the confidence of someone who's already won before the first ball is bowled."</p>
+                    <p class="testimonial-author">- Tournament Organizer</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content fade-in">
+                <h3>Cricket Journey</h3>
+                <p>"I never had a coach. I learned by watching, testing, failing, adjusting, and winning small battles. Over after over. Ball by ball."</p>
+                <p class="copyright">© 2025 Cricket Journey. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Navigation
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        const navItems = document.querySelectorAll('.nav-links li');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            hamburger.classList.toggle('active');
+        });
+
+        navItems.forEach(item => {
+            item.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                hamburger.classList.remove('active');
+            });
+        });
+
+        // Sticky Header
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Quote Slider
+        const quotes = document.querySelectorAll('.quote');
+        const dots = document.querySelectorAll('.dot');
+
+        dots.forEach(dot => {
+            dot.addEventListener('click', () => {
+                const index = dot.getAttribute('data-index');
+                
+                // Remove active class from all quotes and dots
+                quotes.forEach(quote => quote.classList.remove('active'));
+                dots.forEach(d => d.classList.remove('active'));
+                
+                // Add active class to selected quote and dot
+                quotes[index].classList.add('active');
+                dot.classList.add('active');
+            });
+        });
+
+        // Auto slider
+        let currentIndex = 0;
+        setInterval(() => {
+            currentIndex = (currentIndex + 1) % quotes.length;
+            
+            quotes.forEach(quote => quote.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('active'));
+            
+            quotes[currentIndex].classList.add('active');
+            dots[currentIndex].classList.add('active');
+        }, 5000);
+
+        // Scroll Reveal Animation
+        const fadeElements = document.querySelectorAll('.fade-in');
+
+        const fadeInOnScroll = () => {
+            fadeElements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (elementTop < windowHeight - 100) {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        };
+
+        // Initialize elements as invisible
+        fadeElements.forEach(element => {
+            element.style.opacity = '0';
+            element.style.transform = 'translateY(20px)';
+            element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        });
+
+        window.addEventListener('scroll', fadeInOnScroll);
+        window.addEventListener('load', fadeInOnScroll);
+    </script>
+</body>
+</html>
